@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/',(req,res)=>{
     return res.send({
         error:false,
-        message:'Ayo wassup, u son of a bitch y dont u go fuck ur self '
+        message:'Ayo wassup '
     })
 })
 
