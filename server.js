@@ -21,13 +21,20 @@ var connection = mysql.createConnection({
 });
 
 app.get('/test',(req,res)=>{
-    connection.query('SELECT * FROM',(error,results,fields)=>{
+    //var size = 'WHERE size = "' +  req.body.size +'"';
+    //var seggs = 'AND "' +  req.body.seggs +'"';
+    //var selector = 'SELECT * FROM `stupid_product` WHERE size = ()';
+    let size = req.body.size;
+    connection.query('SELECT * FROM `stupid_product` WHERE size = (?)',[size],(error,results,fields)=>{
+
         if (error) throw error;
 
-        let message = "tah daaa~~~";
-        if(results == undefined || results.lenght == 0){
+        let message = "";
+
+        if(results === null || Object.keys(results).length == 0){
             message = "Nothing here";
-        }else {
+
+        }else{
             message = "Take you stupid stuff";
         }
         return res.send({
@@ -37,6 +44,8 @@ app.get('/test',(req,res)=>{
         })
     })
 })
+
+//app.post('/test')
 app.listen(1112, () =>{
     console.log('App is run the fuck on P I Z Z A')
 })
